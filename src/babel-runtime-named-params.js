@@ -26,7 +26,7 @@
 const funcParams = require("func-params")
 
 /*  the API function  */
-function callFunctionWithNamedParameters (ctx, fn, pp, np, caching = true) {
+function callFunctionWithNamedParameters (ctx, fn, pp, np, options = {}) {
     /*  sanity check arguments  */
     if (!(typeof fn === "function"))
         throw new Error("invalid function parameter")
@@ -34,9 +34,17 @@ function callFunctionWithNamedParameters (ctx, fn, pp, np, caching = true) {
         throw new Error("invalid positional-parameter parameter")
     if (!(typeof np === "object"))
         throw new Error("invalid named-parameter parameter")
+    if (!(typeof options === "object"))
+        throw new Error("invalid options parameter")
+
+    /*  determine options  */
+    options = Object.assign({}, {
+        options: true,
+        caching: true
+    }, options)
 
     /*  determine function parameter names  */
-    let names = funcParams(fn, caching)
+    let names = funcParams(fn, options.caching)
 
     /*  initialize function arguments  */
     let args = new Array(names.length)
@@ -47,19 +55,19 @@ function callFunctionWithNamedParameters (ctx, fn, pp, np, caching = true) {
     }
 
     /*  detect special options argument  */
-    let optIndex = names.findIndex((name) =>
-        name.match(/^(?:opt(?:ion)?|setting)s?$/))
+    let optIndex = options.options ? names.findIndex((name) =>
+        name.match(/^(?:opt(?:ion)?|setting)s?$/)) : -1
 
     /*  process named parameters  */
     Object.keys(np).forEach((name) => {
         let i = names.indexOf(name)
-        if (i < 0 && optIndex >= 0) {
+        if (options.options && i < 0 && optIndex >= 0) {
             if (!mask[optIndex])
                 args[optIndex] = {}
             args[optIndex][name] = np[name]
             mask[optIndex] = true
         }
-        else if (i >= 0 && i === optIndex) {
+        else if (options.options && i >= 0 && i === optIndex) {
             if (typeof np[name] !== "object")
                 throw new Error(`invalid type of option-style named parameter "${name}" (expected object)`)
             if (!mask[optIndex])
