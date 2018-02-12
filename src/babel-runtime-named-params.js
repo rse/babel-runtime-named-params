@@ -55,8 +55,7 @@ function callFunctionWithNamedParameters (ctx, fn, pp, np, options = {}) {
     }
 
     /*  detect special options argument  */
-    let optIndex = options.options ? names.findIndex((name) =>
-        name.match(/^(?:opt(?:ion)?|setting)s?$/)) : -1
+    let optIndex = options.options ? names.indexOf("options") : -1
 
     /*  process named parameters  */
     Object.keys(np).forEach((name) => {
