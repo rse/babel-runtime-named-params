@@ -17,7 +17,7 @@ This is the corresponding run-time for the [Babel](https://babeljs.io/) plugin
 [`babel-plugin-named-params`](http://github.com/rse/babel-plugin-named-params)
 which transforms so-called *named function parameters* in ECMAScript 2015 source code.
 It exports a single trampoline function
-`T(ctx: any, fn: Function, pp: any[], np: Object, options?: boolean, caching?: boolean): any`
+`T(ctx: any, fn: Function, pp: any[], np: Object, options?: { options?: boolean, caching?: boolean }): any`
 which calls `fn` (bound to context object `ctx`) with an argument list
 based on the positional parameters in `pp` and the named parameters in `np`.
 For figuring out the names of all parameters of function `fn`, this
