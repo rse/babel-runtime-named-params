@@ -28,15 +28,15 @@
         "grunt-eslint":                   "~20.1.0",
         "babel-eslint":                   "~8.2.3",
         "envify":                         "~4.1.0",
-        "uglifyify":                      "~4.0.5",
+        "uglifyify":                      "~5.0.0",
         "babelify":                       "~8.0.0",
         "eslint":                         "~4.19.1",
         "eslint-config-standard":         "~11.0.0",
-        "eslint-plugin-standard":         "~3.0.1",
+        "eslint-plugin-standard":         "~3.1.0",
         "eslint-plugin-promise":          "~3.7.0",
         "eslint-plugin-import":           "~2.11.0",
         "eslint-plugin-node":             "~6.0.1",
-        "babel-core":                     "~6.26.0",
+        "babel-core":                     "~6.26.3",
         "babel-preset-es2015":            "~6.24.1",
         "babel-preset-es2016":            "~6.24.1",
         "babel-preset-es2017":            "~6.24.1",
@@ -47,7 +47,7 @@
         "browserify-derequire":           "~0.9.4"
     },
     "dependencies" : {
-        "func-params":                    "~0.9.5"
+        "func-params":                    "~0.9.6"
     },
     "engines": {
         "node":                           ">=6.0.0"
