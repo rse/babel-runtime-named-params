@@ -2,7 +2,7 @@
     "name":        "babel-runtime-named-params",
     "homepage":    "https://github.com/rse/babel-runtime-named-params",
     "description": "Babel Run-Time for Named Function Parameters",
-    "version":     "0.9.9",
+    "version":     "0.9.10",
     "license":     "MIT",
     "author": {
         "name":    "Ralf S. Engelschall",
