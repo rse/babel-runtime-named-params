@@ -44,12 +44,16 @@ module.exports = function (grunt) {
                     transform: [
                         [ "envify", { PLATFORM: "browser" } ],
                         [ "babelify", {
-                            presets: [ "es2015", "es2016", "es2017", "stage-3", "stage-2" ],
-                            plugins: [ [ "transform-runtime", {
+                            presets: [
+                                [ "@babel/preset-env", {
+                                    "targets": {
+                                        "browsers": "last 8 versions, > 1%, ie 11"
+                                    }
+                                } ]
+                            ],
+                            plugins: [ [ "@babel/transform-runtime", {
                                 "helpers":     false,
-                                "polyfill":    false,
-                                "regenerator": false,
-                                "moduleName":  "babel-runtime"
+                                "regenerator": false
                             } ] ]
                         } ],
                         [ "uglifyify", { sourceMap: false, global: true } ]
@@ -72,12 +76,16 @@ module.exports = function (grunt) {
                     transform: [
                         [ "envify", { PLATFORM: "node" } ],
                         [ "babelify", {
-                            presets: [ "es2015", "es2016", "es2017", "stage-3", "stage-2" ],
-                            plugins: [ [ "transform-runtime", {
+                            presets: [
+                                [ "@babel/preset-env", {
+                                    "targets": {
+                                        "node": "8.0.0"
+                                    }
+                                } ]
+                            ],
+                            plugins: [ [ "@babel/transform-runtime", {
                                 "helpers":     false,
-                                "polyfill":    false,
-                                "regenerator": false,
-                                "moduleName":  "babel-runtime"
+                                "regenerator": false
                             } ] ]
                         } ]
                     ],
@@ -85,7 +93,7 @@ module.exports = function (grunt) {
                         "browserify-header"
                     ],
                     external: [
-                        "tokenizr"
+                        "func-params"
                     ],
                     browserifyOptions: {
                         standalone: "babel-runtime-named-params",
