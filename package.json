@@ -43,7 +43,7 @@
         "browserify-derequire":            "1.0.1"
     },
     "dependencies" : {
-        "func-params":                     "0.9.14"
+        "func-params":                     "0.9.15"
     },
     "engines": {
         "node":                            ">=8.0.0"
