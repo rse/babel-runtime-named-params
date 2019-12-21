@@ -44,22 +44,22 @@ function callFunctionWithNamedParameters (ctx, fn, pp, np, options = {}) {
     }, options)
 
     /*  determine function parameter names  */
-    let names = funcParams(fn, options.caching)
+    const names = funcParams(fn, options.caching)
 
     /*  initialize function arguments  */
-    let args = new Array(names.length)
-    let mask = new Array(names.length)
+    const args = new Array(names.length)
+    const mask = new Array(names.length)
     for (let i = 0; i < names.length; i++) {
         args[i] = undefined
         mask[i] = false
     }
 
     /*  detect special options argument  */
-    let optIndex = options.options ? names.indexOf("options") : -1
+    const optIndex = options.options ? names.indexOf("options") : -1
 
     /*  process named parameters  */
     Object.keys(np).forEach((name) => {
-        let i = names.indexOf(name)
+        const i = names.indexOf(name)
         if (options.options && i < 0 && optIndex >= 0) {
             if (!mask[optIndex])
                 args[optIndex] = {}
